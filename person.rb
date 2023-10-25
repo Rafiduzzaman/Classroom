@@ -1,10 +1,9 @@
-# person.rb
 class Person
   attr_accessor :name, :age
   attr_reader :id
 
-  def initialize(age: 18, name: 'Unknown', parent_permission: true)
-    @id = rand(1...1000) # Generate a random ID within the range 1-999
+  def initialize(age:, name: 'Unknown', parent_permission: true)
+    @id = generate_id
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -18,5 +17,9 @@ class Person
 
   def of_age?
     @age >= 18
+  end
+
+  def generate_id
+    rand(1...1000)
   end
 end
