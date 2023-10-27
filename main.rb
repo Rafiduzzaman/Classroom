@@ -3,9 +3,9 @@ require_relative 'student'
 require_relative 'teacher'
 
 # Create a person
-# person = Person.new(age: 20, name: 'Alice', parent_permission: true)
-person = Person.new(28, parent_permission: false)
-p person.name
+person = Person.new(20, parent_permission: true)
+# person = Person.new(28, parent_permission: false)
+# p person.name
 puts person.can_use_services?
 
 # Create a student
