@@ -1,7 +1,3 @@
-require_relative 'person'
-require_relative 'student'
-require_relative 'teacher'
-
 # Create a person
 person = Person.new(20, parent_permission: true)
 # person = Person.new(28, parent_permission: false)
