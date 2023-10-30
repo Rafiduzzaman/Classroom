@@ -34,4 +34,21 @@ class UserInterface
     puts '7 - Exit'
     puts "\n"
   end
+
+  def handle_option(option)
+    if @options.key?(option)
+      @app.send(@options[option])
+    else
+      handle_invalid_option
+    end
+  end
+
+  def exit_application
+    puts 'Thanks for using this app!'
+    exit
+  end
+
+  def handle_invalid_option
+    puts 'Incorrect choice. Please choose a number between 1 and 7'
+  end
 end
