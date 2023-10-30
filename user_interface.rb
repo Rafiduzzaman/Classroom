@@ -49,6 +49,6 @@ class UserInterface
   end
 
   def handle_invalid_option
-    puts 'Incorrect choice. Please choose a number between 1 and 7'
-  end
+    puts 'Incorrect choice. Please choose a number between 1 and 7'
+  end
 end
