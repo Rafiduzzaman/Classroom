@@ -92,7 +92,17 @@ ruby main.rb
 - Twitter: [@rdzaman](https://twitter.com/rdzaman187468)
 - LinkedIn: [@md-rafiduzzaman-nahin](https://www.linkedin.com/in/md-rafiduzzaman-nahin-7431ab1b4/)
 
+- GitHub: [@78fatemanazari](https://github.com/78fatemanazari)
+- Twitter: [@fati_nazari78](https://twitter.com/fati_nazari78?s=31)
+- LinkedIn: [78fatemanazari](https://www.linkedin.com/in/78fatemanazari)
+
+- 👤 **MR. FRANCIS ANDOH**
+- 
+- GitHub: [@CobbyElsonfx](https://github.com/CobbyElsonfx)
+- LinkedIn: [@FrancisAndoh](https://www.linkedin.com/in/francis-andoh-133aa7245/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- FUTURE FEATURES -->
 
