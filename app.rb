@@ -33,7 +33,11 @@ class App
 
   def show_people
     @people.each_with_index do |person, index|
-      puts "(#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+      if person.nil?
+        puts "Person at index #{index} is nil."
+      else
+        puts "(#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+      end
     end
   end
 
@@ -45,6 +49,56 @@ class App
     puts 'Rentals:'
     @rental.each do |rent|
       puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
+    end
+  end
+
+  def save_books_to_json
+    File.write('books.json', JSON.generate(@books.map(&:to_json)))
+  end
+
+  def load_books_from_json
+    if File.exist?('books.json')
+      File.open('books.json', 'r') do |file|
+        @books = JSON.parse(file.read).map { |book_data| Book.from_json(book_data) }
+      end
+    else
+      puts 'Books file is missing or empty.'
+    end
+  end
+
+  def save_people_to_json
+    File.write('people.json', JSON.generate(@people.map(&:to_json)))
+  end
+
+  def load_people_from_json
+    if File.exist?('people.json')
+      File.open('people.json', 'r') do |file|
+        @people = JSON.parse(file.read).map do |person_data|
+          case person_data['type']
+          when 'Student'
+            Student.from_json(person_data['data'])
+          when 'Teacher'
+            Teacher.from_json(person_data['data'])
+          end
+        end
+      end
+    else
+      puts 'People file is missing or empty.'
+    end
+  end
+
+  def save_rentals_to_json
+    File.write('rentals.json', JSON.generate(@rental.map { |r| r.to_json(@people, @books) }))
+  end
+
+  def load_rentals_from_json
+    if File.exist?('rentals.json')
+      File.open('rentals.json', 'r') do |file|
+        rental_data = JSON.parse(file.read)
+        @rental = rental_data.map { |data| Rental.from_json(data, @people, @books) }
+      end
+    else
+      puts 'Rentals file is missing or empty.'
     end
   end
 
@@ -62,9 +116,9 @@ class App
       student = Student.new(classroom, age, name, parent_permission: permission)
       @people.push(student)
     elsif type == '2'
-      print 'Specialization:'
+      print 'Specialization: '
       specialization = gets.chomp
-      teacher = Teacher.new(specialization, age, name: name, parent_permission: true)
+      teacher = Teacher.new(specialization, age, name: name)
       @people.push(teacher)
     else
       puts 'Invalid input'
