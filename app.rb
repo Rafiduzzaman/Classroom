@@ -2,7 +2,7 @@ require_relative 'book'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
-require 'json'
+
 
 class App
   def initialize
@@ -33,7 +33,11 @@ class App
 
   def show_people
     @people.each_with_index do |person, index|
-      puts "(#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+      if person.nil?
+        puts "Person at index #{index} is nil."
+      else
+        puts "(#{index}) [#{person.class}] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+      end
     end
   end
 
@@ -80,6 +84,21 @@ class App
       end
     else
       puts 'People file is missing or empty.'
+    end
+  end
+
+  def save_rentals_to_json
+    File.write('rentals.json', JSON.generate(@rental.map { |r| r.to_json(@people, @books) }))
+  end
+
+  def load_rentals_from_json
+    if File.exist?('rentals.json')
+      File.open('rentals.json', 'r') do |file|
+        rental_data = JSON.parse(file.read)
+        @rental = rental_data.map { |data| Rental.from_json(data, @people, @books) }
+      end
+    else
+      puts 'Rentals file is missing or empty.'
     end
   end
 
