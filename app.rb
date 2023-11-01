@@ -2,6 +2,7 @@ require_relative 'book'
 require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
+require 'json'
 
 class App
   def initialize
@@ -44,6 +45,20 @@ class App
     puts 'Rentals:'
     @rental.each do |rent|
       puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
+    end
+  end
+
+  def save_books_to_json
+    File.write('books.json', JSON.generate(@books.map(&:to_json)))
+  end
+
+  def load_books_from_json
+    if File.exist?('books.json')
+      File.open('books.json', 'r') do |file|
+        @books = JSON.parse(file.read).map { |book_data| Book.from_json(book_data) }
+      end
+    else
+      puts 'Books file is missing or empty.'
     end
   end
 
