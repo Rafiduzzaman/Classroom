@@ -62,6 +62,27 @@ class App
     end
   end
 
+  def save_people_to_json
+    File.write('people.json', JSON.generate(@people.map(&:to_json)))
+  end
+
+  def load_people_from_json
+    if File.exist?('people.json')
+      File.open('people.json', 'r') do |file|
+        @people = JSON.parse(file.read).map do |person_data|
+          case person_data['type']
+          when 'Student'
+            Student.from_json(person_data['data'])
+          when 'Teacher'
+            Teacher.from_json(person_data['data'])
+          end
+        end
+      end
+    else
+      puts 'People file is missing or empty.'
+    end
+  end
+
   def create_person(type)
     print 'Age:'
     age = gets.chomp
@@ -76,9 +97,9 @@ class App
       student = Student.new(classroom, age, name, parent_permission: permission)
       @people.push(student)
     elsif type == '2'
-      print 'Specialization:'
+      print 'Specialization: '
       specialization = gets.chomp
-      teacher = Teacher.new(specialization, age, name: name, parent_permission: true)
+      teacher = Teacher.new(specialization, age, name: name)
       @people.push(teacher)
     else
       puts 'Invalid input'

@@ -24,6 +24,7 @@ def handle_create_person(app)
   puts 'Choose the person type (1 for student, 2 for teacher):'
   person_type = gets.chomp
   app.create_person(person_type)
+  app.save_people_to_json
 end
 
 def handle_create_book(app)
@@ -44,7 +45,7 @@ app = App.new
 
 puts 'Welcome to Our School Library App!'
 app.load_books_from_json
-app.load_rentals_from_json
+app.load_people_from_json
 
 loop do
   display_menu

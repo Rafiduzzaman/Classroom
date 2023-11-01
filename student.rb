@@ -8,9 +8,18 @@ class Student < Person
     @classroom = classroom
   end
 
-  def add_classroom(classroom)
-    classroom.students.push(self) unless classroom.students.include?(self)
-    @classroom = classroom
+  def to_json(*_args)
+    {
+      'classroom' => @classroom,
+      'age' => @age,
+      'name' => @name,
+      'parent_permission' => @parent_permission
+    }.to_json
+  end
+
+  def self.from_json(json_string)
+    data = JSON.parse(json_string)
+    new(data['classroom'], data['age'], data['name'], data['parent_permission'])
   end
 
   def play_hooky
