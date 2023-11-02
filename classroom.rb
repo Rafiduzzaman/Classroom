@@ -8,7 +8,9 @@ class Classroom
   end
 
   def add_student(student)
-    @students.push(student) unless students.include?(student)
-    student.classroom = self
+    return if students.include?(student)
+
+    students.push(student)
+    student.classroom = self # Set the classroom attribute of the student
   end
 end
