@@ -17,6 +17,6 @@ describe Teacher do
   end
 
   it 'should be able to use services' do
-    expect(teacher.can_use_services?).to be true
-  end
+    expect(teacher.can_use_services?).to be true
+  end
 end
