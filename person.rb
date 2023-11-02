@@ -19,8 +19,6 @@ class Person < Nameable
     @age >= 18
   end
 
-  private :of_age?
-
   def can_use_services?
     of_age? || @parent_permission
   end
@@ -31,5 +29,13 @@ class Person < Nameable
 
   def rent(book, date)
     Rental.new(date, book, self)
+  end
+
+  def to_json(*_args)
+    {
+      'name' => @name,
+      'age' => @age,
+      'parent_permission' => @parent_permission
+    }.to_json
   end
 end
