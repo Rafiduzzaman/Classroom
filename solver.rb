@@ -1,9 +1,9 @@
 class Solver
   def factorial(_number)
-    raise ArgumentError, 'Factorial is not defined for negative numbers.' if n.negative?
+    raise ArgumentError, 'Factorial is not defined for negative numbers.' if _number.negative?
 
     result = 1
-    (1..n).each do |i|
+    (1.._number).each do |i|
       result *= i
     end
 
