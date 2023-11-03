@@ -1,4 +1,4 @@
-require_relative 'solver'  # Make sure this path is correct
+require_relative '../solver'  # Make sure this path is correct
 
 RSpec.describe Solver do
   describe '#factorial' do
