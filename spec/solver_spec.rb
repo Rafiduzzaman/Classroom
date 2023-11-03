@@ -41,27 +41,32 @@ RSpec.describe Solver do
   end
 
   describe '#fizzbuzz' do
+   
     it 'returns "fizz" when N is divisible by 3' do
-      expect(fizzbuzz(3)).to eq('fizz')
-      expect(fizzbuzz(6)).to eq('fizz')
-      expect(fizzbuzz(9)).to eq('fizz')
+      solver = Solver.new
+      expect(solver.fizzbuzz(3)).to eq('fizz')
+      expect(solver.fizzbuz(6)).to eq('fizz')
+      expect(solver.fizzbuz(9)).to eq('fizz')
     end
   
     it 'returns "buzz" when N is divisible by 5' do
-      expect(fizzbuzz(5)).to eq('buzz')
-      expect(fizzbuzz(10)).to eq('buzz')
-      expect(fizzbuzz(20)).to eq('buzz')
+      solver = Solver.new
+      expect(solver.fizzbuz(5)).to eq('buzz')
+      expect(solver.fizzbuz(10)).to eq('buzz')
+      expect(solver.fizzbuz(20)).to eq('buzz')
     end
   
     it 'returns "fizzbuzz" when N is divisible by both 3 and 5' do
-      expect(fizzbuzz(15)).to eq('fizzbuzz')
-      expect(fizzbuzz(30)).to eq('fizzbuzz')
+      solver = Solver.new
+      expect(solver.fizzbuz(15)).to eq('fizzbuzz')
+      expect(solver.fizzbuz(30)).to eq('fizzbuzz')
     end
   
     it 'returns N as a string for other cases' do
-      expect(fizzbuzz(7)).to eq('7')
-      expect(fizzbuzz(11)).to eq('11')
-      expect(fizzbuzz(14)).to eq('14')
+      solver = Solver.new
+      expect(solver.fizzbuz(7)).to eq('7')
+      expect(solver.fizzbuz(11)).to eq('11')
+      expect(solver.fizzbuz(14)).to eq('14')
     end
   end
 end
