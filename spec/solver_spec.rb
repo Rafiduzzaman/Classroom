@@ -22,4 +22,21 @@ RSpec.describe Solver do
       expect { solver.factorial(-3) }.to raise_error(ArgumentError)
     end
   end
+
+  describe '#reverse' do
+    it 'returns the reversed word for a word' do
+      solver = Solver.new
+      expect(solver.reverse('hello')).to eq('olleh')
+    end
+
+    it 'returns an empty string for an empty string' do
+      solver = Solver.new
+      expect(solver.reverse('')).to eq('')
+    end
+
+    it 'returns the same character for a single character' do
+      solver = Solver.new
+      expect(solver.reverse('a')).to eq('a')
+    end
+  end
 end
